@@ -12,6 +12,8 @@ namespace ChessDesktopApplication.Model
     {
         public static char[] colum = new char[8] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
         char[,] board;
+        public static char[] whitePieces = new char[6] { '♙', '♖', '♘', '♗', '♕', '♔' };
+        public static char[] blackPieces = new char[6] { '♟' , '♜', '♞', '♝', '♛', '♚' };
         public Board()
         {
             board = new char[8, 8]
@@ -43,7 +45,7 @@ namespace ChessDesktopApplication.Model
             }
             return false; 
         }
-        private bool outofBounds(int x, int y)
+       public static bool outofBounds(int x, int y)
         {
             return !(x >= 0 && x < 8 && y >= 0 && y < 8); 
 

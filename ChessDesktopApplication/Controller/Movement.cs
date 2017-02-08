@@ -20,6 +20,22 @@ namespace ChessDesktopApplication.Movement
         }
         public bool movePiece(int initX, int initY, int destX, int destY)
         {
+            if (Board.outofBounds(initX,initY))
+                {
+                throw new System.ArgumentOutOfRangeException("Impossible Piece position");
+            }
+            if (Board.outofBounds(destX,destY))
+            {
+                throw new System.ArgumentOutOfRangeException("Destination is out side of Board"); 
+            }
+            char piece = board.getPiece(initX, initY);
+            char destPiece = board.getPiece(destX, destY);
+            if (Board.blackPieces.Contains(piece) && Board.blackPieces.Contains(destPiece) || Board.whitePieces.Contains(piece) && Board.whitePieces.Contains(destPiece))
+            {
+                throw new System.InvalidOperationException("Unable to capture ones own pieces"); 
+            }
+
+
             return false; 
         }
         public bool moveKing(int initX, int initY, int destX, int destY)
