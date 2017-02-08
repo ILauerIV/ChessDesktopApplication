@@ -30,6 +30,10 @@ namespace ChessDesktopApplication.Movement
                 //throw new System.ArgumentOutOfRangeException("Destination is out side of Board");
                 return false;
             }
+            if (initX == destX && initY == destY)
+            {
+                return false; 
+            }
             char piece = board.getPiece(initX, initY);
             char destPiece = board.getPiece(destX, destY);
             if (Board.blackPieces.Contains(piece) && Board.blackPieces.Contains(destPiece) || Board.whitePieces.Contains(piece) && Board.whitePieces.Contains(destPiece))
@@ -38,6 +42,8 @@ namespace ChessDesktopApplication.Movement
                 return false;
             }
             // Boolean isWhite = Board.whitePieces.Contains(piece);
+            // Need to Add move on own place 
+        
             switch (piece)
             {
                 case '♙':
@@ -72,7 +78,19 @@ namespace ChessDesktopApplication.Movement
         }
 
         public bool moveKing(int initX, int initY, int destX, int destY)
-        { return false; }
+        {
+            bool moveable = false;
+            if  ((Math.Abs(initY - destY) <= 1) && (Math.Abs(initX - destX) <= 1))
+
+            {
+                moveable = true;              
+            }
+            if (moveable && !blockedMove(initX, initY, destX, destY))
+            {
+                move(initX, initY, destX, destY);
+            }
+            return moveable;
+        }
         public bool moveQueen(int initX, int initY, int destX, int destY)
         { return false; }
         public bool moveKnight(int initX, int initY, int destX, int destY)
@@ -80,12 +98,29 @@ namespace ChessDesktopApplication.Movement
         public bool movePawn(int initX, int initY, int destX, int destY)
         { return false; }
         public bool moveRook(int initX, int initY, int destX, int destY)
-        { return false; }
+        {
+            bool moveable = false; 
+            if ((initX == destX) || (initY == destY))
+            {
+                moveable = true; 
+            }
+            if (moveable && !blockedMove(initX, initY, destX, destY))
+            {
+                move(initX, initY, destX, destY);
+            }
+            return moveable; 
+        }
         public bool moveBishop(int initX, int initY, int destX, int destY)
         { return false; }
         public bool blockedMove(int initX, int initY, int destX, int destY)
         { return false; }
         public bool blockedDestination(int initX, int initY, int destX, int destY)
         { return false; }
+        private void move (int initX, int initY, int destX, int destY)
+        {
+            char piece = board.getPiece(initX, initY);
+            board.setPiece(destX, destY, piece);
+            board.setPiece(initX, initY, ' ');
+        }
     }
 }
