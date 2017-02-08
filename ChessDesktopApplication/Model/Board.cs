@@ -50,6 +50,14 @@ namespace ChessDesktopApplication.Model
             return !(x >= 0 && x < 8 && y >= 0 && y < 8); 
 
         }
+        public static bool isWhite (char x)
+        {
+            return whitePieces.Contains(x);
+        }
+        public static bool isBlack(char x)
+        {
+            return blackPieces.Contains(x);
+        }
         public void resetBoard() {
         board = new char[8,8]
                 {
