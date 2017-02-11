@@ -42,8 +42,8 @@ namespace ChessDesktopApplication.Movement
                 return false;
             }
             // Boolean isWhite = Board.whitePieces.Contains(piece);
-            // Need to Add move on own place 
-        
+      
+     
             switch (piece)
             {
                 case '♙':
@@ -92,7 +92,22 @@ namespace ChessDesktopApplication.Movement
             return moveable;
         }
         public bool moveQueen(int initX, int initY, int destX, int destY)
-        { return false; }
+        {
+            bool moveable = false;
+            if (Math.Abs(initX - destX) == Math.Abs(initY - destY))
+            {
+                moveable = true;
+            }
+            else if  ((initX == destX) || (initY == destY))
+                {
+                    moveable = true;
+                }
+            if (moveable && !blockedMove(initX, initY, destX, destY))
+            {
+                move(initX, initY, destX, destY);
+            }
+            return moveable;
+        }
         public bool moveKnight(int initX, int initY, int destX, int destY)
         { return false; }
         public bool movePawn(int initX, int initY, int destX, int destY)
@@ -111,11 +126,24 @@ namespace ChessDesktopApplication.Movement
             return moveable; 
         }
         public bool moveBishop(int initX, int initY, int destX, int destY)
-        { return false; }
+        {
+            bool moveable = false;
+            if (Math.Abs(initX - destX) == Math.Abs(initY - destY))
+            {
+                moveable = true;
+            }
+            if (moveable && !blockedMove(initX, initY, destX, destY))
+            {
+                move(initX, initY, destX, destY);
+            }
+            return moveable;
+        }
         public bool blockedMove(int initX, int initY, int destX, int destY)
-        { return false; }
-        public bool blockedDestination(int initX, int initY, int destX, int destY)
-        { return false; }
+        {
+            Boolean blocked = false;
+            char piece = board.getPiece(initX, initY);
+            return blocked; 
+        }
         private void move (int initX, int initY, int destX, int destY)
         {
             char piece = board.getPiece(initX, initY);
