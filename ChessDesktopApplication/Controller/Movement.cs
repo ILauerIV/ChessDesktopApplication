@@ -142,6 +142,61 @@ namespace ChessDesktopApplication.Movement
         {
             Boolean blocked = false;
             char piece = board.getPiece(initX, initY);
+            switch (piece)
+            {
+                case '♙':
+                case '♟':
+                    break;
+                case '♖':
+                case '♜':
+                  
+                    break;
+                case '♝':
+                case '♗':
+                    break;
+ 
+                case '♚':
+                case '♔':
+                    break;
+                case '♘':
+                case '♞':
+                    break;
+                default:
+                    return false;
+                    break;
+            }
+            return blocked; 
+        }
+        private bool blockedMoveRook(int initX, int initY, int destX, int destY)
+        {
+            bool blocked = true;
+      
+            if (initX == destX)
+            {
+                int high = Math.Max(initY, destY);
+                int low = Math.Min(initY, destY);
+                for (int i = low; i < high; ++i)
+                {
+                    if (!board.getPiece(initX,i).Equals(' '))
+                    {
+                        return blocked; 
+                    }
+                }
+                blocked = false; 
+            }
+            else if (initY == destY)
+            {
+                int high = Math.Max(initX, destX);
+                int low = Math.Min(initX, destX);
+                for (int i = low; i < high; ++i)
+                {
+                    if (!board.getPiece(i, initY).Equals(' '))
+                    {
+                        return blocked;
+                    }
+                }
+                blocked = false; 
+            }
             return blocked; 
         }
         private void move (int initX, int initY, int destX, int destY)
