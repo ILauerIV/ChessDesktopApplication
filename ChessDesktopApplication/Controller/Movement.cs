@@ -129,6 +129,7 @@ namespace ChessDesktopApplication.Movement
             if ((x + y) == 3 && ((angle == 2.0) || (angle == -2.0) || (angle == .5) || (angle == -.5)))
             {
                 moveable = true;
+                move(initX, initY, destX, destY);
             }
             return moveable;
         }
@@ -179,6 +180,10 @@ namespace ChessDesktopApplication.Movement
                 {
 
                 }
+            }
+            if (moveable)
+            {
+                move(initX, initY, destX, destY);
             }
             return moveable;
         }
@@ -380,28 +385,69 @@ namespace ChessDesktopApplication.Movement
                 {
                     if (board.getPiece(7, 0) == '♖') // if the rook is still in position
                     {
-                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(7,0,7,3))) // if nothing is between the rook and king
-                            {
+                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(7, 0, 7, 3))) // if nothing is between the rook and king
+                        {
                             board.setPiece(initX, initY, ' ');
                             board.setPiece(7, 0, ' ');
                             board.setPiece(destX, destY, piece);
                             board.setPiece(7, 3, '♖');
+                            castle = true;
                         }
                     }
                 }
             }
             else if (white && !left)
             {
-
+                if (destX == 6)
+                {
+                    if (board.getPiece(7, 7) == '♖') // if the rook is still in position
+                    {
+                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(7, 7, 7, 5))) // if nothing is between the rook and king
+                        {
+                            board.setPiece(initX, initY, ' ');
+                            board.setPiece(7, 7, ' ');
+                            board.setPiece(destX, destY, piece);
+                            board.setPiece(7, 5, '♖');
+                            castle = true;
+                        }
+                    }
+                }
             }
             else if (!white && left)
             {
-
+                if (destX == 2) // if they king is moving to right space
+                {
+                    if (board.getPiece(0, 0) == '♜') // if the rook is still in position
+                    {
+                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(0, 0, 0, 3))) // if nothing is between the rook and king
+                        {
+                            board.setPiece(initX, initY, ' ');
+                            board.setPiece(0, 0, ' ');
+                            board.setPiece(destX, destY, piece);
+                            board.setPiece(0, 3, '♜');
+                            castle = true;
+                        }
+                    }
+                }
             }
             else if (!white && !left)
             {
-
+                if (destX == 6)
+                {
+                    if (board.getPiece(0, 7) == '♜') // if the rook is still in position
+                    {
+                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(0, 7, 0, 5))) // if nothing is between the rook and king
+                        {
+                            board.setPiece(initX, initY, ' ');
+                            board.setPiece(0, 7, ' ');
+                            board.setPiece(destX, destY, piece);
+                            board.setPiece(0, 5, '♜');
+                            castle = true;
+                        }
+                    }
+                }
             }
+
             return castle;
         }
     }
