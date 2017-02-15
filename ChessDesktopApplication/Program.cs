@@ -14,7 +14,7 @@ namespace ChessDesktopApplication.Model
             Board board = new Board();
             board.movePiece("73", "04");
             Console.Write(board.ToString());
-            Console.Read();
+         //   Console.Read();
         }
     }
 }
