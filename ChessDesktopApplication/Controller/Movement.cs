@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessDesktopApplication.Model; 
+using ChessDesktopApplication.Model;
 
 namespace ChessDesktopApplication.Movement
 {
@@ -38,7 +38,7 @@ namespace ChessDesktopApplication.Movement
             }
             if (initX == destX && initY == destY)
             {
-                return false; 
+                return false;
             }
             char piece = board.getPiece(initX, initY);
             char destPiece = board.getPiece(destX, destY);
@@ -48,8 +48,8 @@ namespace ChessDesktopApplication.Movement
                 return false;
             }
             // Boolean isWhite = Board.whitePieces.Contains(piece);
-      
-     
+
+
             switch (piece)
             {
                 case '♙':
@@ -80,17 +80,21 @@ namespace ChessDesktopApplication.Movement
                     return false;
                     break;
             }
-            return true; 
+            return true;
         }
 
         public bool moveKing(int initX, int initY, int destX, int destY)
         {
             bool moveable = false;
-            if  ((Math.Abs(initY - destY) <= 1) && (Math.Abs(initX - destX) <= 1))
+            if ((Math.Abs(initY - destY) <= 1) && (Math.Abs(initX - destX) <= 1))
 
             {
                 moveable = true;
                 move(initX, initY, destX, destY);
+            }
+            else
+            {
+                moveable = castling(initX, initY, destX, destY);
             }
             return moveable;
         }
@@ -101,10 +105,10 @@ namespace ChessDesktopApplication.Movement
             {
                 moveable = true;
             }
-            else if  ((initX == destX) || (initY == destY))
-                {
-                    moveable = true;
-                }
+            else if ((initX == destX) || (initY == destY))
+            {
+                moveable = true;
+            }
             if (moveable && !blockedMove(initX, initY, destX, destY))
             {
                 move(initX, initY, destX, destY);
@@ -114,7 +118,7 @@ namespace ChessDesktopApplication.Movement
         /**
          * Checks if a knight can move. It does this by calculating the angle between the 
          * inital and destination spaces and by making sure the x and y movement equals 3
-         */ 
+         */
         public bool moveKnight(int initX, int initY, int destX, int destY)
         {
             bool moveable = false;
@@ -122,9 +126,9 @@ namespace ChessDesktopApplication.Movement
             float y = Math.Abs(initY - destY);
             float x = Math.Abs(initX - destY);
             angle = x / y;
-            if ((x + y) == 3 && ((angle == 2.0 )|| (angle == -2.0) || (angle == .5) || (angle == -.5)))
+            if ((x + y) == 3 && ((angle == 2.0) || (angle == -2.0) || (angle == .5) || (angle == -.5)))
             {
-                moveable = true; 
+                moveable = true;
             }
             return moveable;
         }
@@ -136,7 +140,7 @@ namespace ChessDesktopApplication.Movement
             {
                 if (initX == destX)
                 {
-                    if (((initY - destY) == 1) && (board.getPiece(destX, destY)) == ' '))
+                    if (((initY - destY) == 1) && (board.getPiece(destX, destY)) == ' ')
                     {
                         moveable = true;
                     }
@@ -151,9 +155,9 @@ namespace ChessDesktopApplication.Movement
                 }
                 else if (entpassant()) // need to figure out how this works 
                 {
-                   
+
                 }
-            } 
+            }
             else
             {
                 if (initX == destX)
@@ -176,19 +180,20 @@ namespace ChessDesktopApplication.Movement
 
                 }
             }
-            return moveable; }
+            return moveable;
+        }
         public bool moveRook(int initX, int initY, int destX, int destY)
         {
-            bool moveable = false; 
+            bool moveable = false;
             if ((initX == destX) || (initY == destY))
             {
-                moveable = true; 
+                moveable = true;
             }
             if (moveable && !blockedMove(initX, initY, destX, destY))
             {
                 move(initX, initY, destX, destY);
             }
-            return moveable; 
+            return moveable;
         }
         public bool moveBishop(int initX, int initY, int destX, int destY)
         {
@@ -225,12 +230,12 @@ namespace ChessDesktopApplication.Movement
                 case '♔':
                     blocked = blockedMoveQueen(initX, initY, destX, destY);
                     break;
-            
+
                 default:
                     return false;
-                    
+
             }
-            return blocked; 
+            return blocked;
         }
         private bool blockedMoveQueen(int initX, int initY, int destX, int destY)
         {
@@ -249,7 +254,7 @@ namespace ChessDesktopApplication.Movement
                 }
                 else if (initY > destY)
                 {
-                    direction = 4; 
+                    direction = 4;
                 }
             }
             else if (initX > destX)
@@ -260,11 +265,11 @@ namespace ChessDesktopApplication.Movement
                 }
                 else if (initY > destY)
                 {
-                    direction = 3; 
+                    direction = 3;
                 }
             }
             int x = initX;
-            int y = initY; 
+            int y = initY;
             while (true) // this is a pain to write. I need to check all the spaces exclusive the inital and destination spaces 
             {
                 if (direction == 1)
@@ -289,35 +294,35 @@ namespace ChessDesktopApplication.Movement
                 }
                 else
                 {
-                    return true;  
+                    return true;
                 }
                 if (x == destX)
                 {
-                    break; 
+                    break;
                 }
-                if (!(board.getPiece(x,y) == ' '))
+                if (!(board.getPiece(x, y) == ' '))
                 {
-                    blocked = true; 
+                    blocked = true;
                 }
             }
-            return blocked; 
+            return blocked;
         }
         private bool blockedMoveRook(int initX, int initY, int destX, int destY)
         {
             bool blocked = true;
-      
+
             if (initX == destX)
             {
                 int high = Math.Max(initY, destY);
                 int low = Math.Min(initY, destY);
                 for (int i = low; i < high; ++i)
                 {
-                    if (!board.getPiece(initX,i).Equals(' '))
+                    if (!board.getPiece(initX, i).Equals(' '))
                     {
-                        return blocked; 
+                        return blocked;
                     }
                 }
-                blocked = false; 
+                blocked = false;
             }
             else if (initY == destY)
             {
@@ -330,23 +335,65 @@ namespace ChessDesktopApplication.Movement
                         return blocked;
                     }
                 }
-                blocked = false; 
+                blocked = false;
             }
-            return blocked; 
+            return blocked;
         }
-        private void move (int initX, int initY, int destX, int destY)
+        private void move(int initX, int initY, int destX, int destY)
         {
             char piece = board.getPiece(initX, initY);
             board.setPiece(destX, destY, piece);
             board.setPiece(initX, initY, ' ');
         }
-    
-    public bool entpassant()
-    {
-        return false; 
-    }
-    public bool castling()
-    {
-        return false; 
+
+        public bool entpassant()
+        {
+            return false;
+        }
+        public bool castling(int initX, int initY, int destX, int destY)
+        {
+            bool castle = false;
+            char piece = board.getPiece(initX, initY);
+            bool left = false;
+            bool white = Board.isWhite(piece);
+            if (initX > destX)
+            {
+                left = true;
+            }
+            if (white)
+            {
+                if (!(initX == 4 && initY == 7) || destY != 7)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!(initX == 4 && initY == 0) || destY != 0)
+                {
+                    return false;
+                }
+            }
+            if (white && left)
+            {
+                if (destX == 2)
+                {
+                    if (board.getPiece(7, 0) == '♖')
+                }
+            }
+            else if (white && !left)
+            {
+
+            }
+            else if (!white && left)
+            {
+
+            }
+            else if (!white && !left)
+            {
+
+            }
+            return castle;
+        }
     }
 }
