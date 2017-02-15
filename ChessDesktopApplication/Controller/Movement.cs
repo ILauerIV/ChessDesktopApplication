@@ -18,6 +18,12 @@ namespace ChessDesktopApplication.Movement
         {
             board = new Model.Board();
         }
+        /**
+         * moves a piece on the board by taking the moving piecs coordinate
+         * and the coordinate of the destination space
+         * Check if the move is legal
+         * Move should not be: Out of Bounds, to the same space, onto a piece of the same color
+         */
         public bool movePiece(int initX, int initY, int destX, int destY)
         {
             if (Board.outofBounds(initX, initY))
@@ -83,10 +89,7 @@ namespace ChessDesktopApplication.Movement
             if  ((Math.Abs(initY - destY) <= 1) && (Math.Abs(initX - destX) <= 1))
 
             {
-                moveable = true;              
-            }
-            if (moveable && !blockedMove(initX, initY, destX, destY))
-            {
+                moveable = true;
                 move(initX, initY, destX, destY);
             }
             return moveable;
@@ -108,8 +111,23 @@ namespace ChessDesktopApplication.Movement
             }
             return moveable;
         }
+        /**
+         * Checks if a knight can move. It does this by calculating the angle between the 
+         * inital and destination spaces and by making sure the x and y movement equals 3
+         */ 
         public bool moveKnight(int initX, int initY, int destX, int destY)
-        { return false; }
+        {
+            bool moveable = false;
+            float angle = -1;
+            float y = Math.Abs(initY - destY);
+            float x = Math.Abs(initX - destY);
+            angle = x / y;
+            if ((x + y) == 3 && ((angle == 2.0 )|| (angle == -2.0) || (angle == .5) || (angle == -.5)))
+            {
+                moveable = true; 
+            }
+            return moveable;
+        }
         public bool movePawn(int initX, int initY, int destX, int destY)
         { return false; }
         public bool moveRook(int initX, int initY, int destX, int destY)
@@ -163,7 +181,77 @@ namespace ChessDesktopApplication.Movement
                     break;
                 default:
                     return false;
-                    break;
+                    
+            }
+            return blocked; 
+        }
+        private bool blockedMoveQueen(int initX, int initY, int destX, int destY)
+        {
+            return (!blockedMoveBishop(initX, initY, destX, destY)) || (!blockedMoveRook(initX, initY, destX, destY));
+        }
+        // this function makes me feel bad. 
+        private bool blockedMoveBishop(int initX, int initY, int destX, int destY)
+        {
+            bool blocked = false;
+            int direction = -1; // Based upon quadrant system, so NE = 1, NW = 2, SW = 3, SE = 4
+            if (initX < destX)
+            {
+                if (initY < destY)
+                {
+                    direction = 1;
+                }
+                else if (initY > destY)
+                {
+                    direction = 4; 
+                }
+            }
+            else if (initX > destX)
+            {
+                if (initY < destY)
+                {
+                    direction = 2;
+                }
+                else if (initY > destY)
+                {
+                    direction = 3; 
+                }
+            }
+            int x = initX;
+            int y = initY; 
+            while (true) // this is a pain to write. I need to check all the spaces exclusive the inital and destination spaces 
+            {
+                if (direction == 1)
+                {
+                    x += 1;
+                    y += 1;
+                }
+                else if (direction == 2)
+                {
+                    x += -1;
+                    y += 1;
+                }
+                else if (direction == 3)
+                {
+                    x += -1;
+                    y += -1;
+                }
+                else if (direction == 4)
+                {
+                    x += 1;
+                    y += -1;
+                }
+                else
+                {
+                    return true;  
+                }
+                if (x == destX)
+                {
+                    break; 
+                }
+                if (!(board.getPiece(x,y) == ' '))
+                {
+                    blocked = true; 
+                }
             }
             return blocked; 
         }
