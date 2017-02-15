@@ -129,7 +129,54 @@ namespace ChessDesktopApplication.Movement
             return moveable;
         }
         public bool movePawn(int initX, int initY, int destX, int destY)
-        { return false; }
+        {
+            bool isWhite = Board.isWhite(board.getPiece(initX, initY));
+            bool moveable = false;
+            if (isWhite)
+            {
+                if (initX == destX)
+                {
+                    if (((initY - destY) == 1) && (board.getPiece(destX, destY)) == ' '))
+                    {
+                        moveable = true;
+                    }
+                    else if (((initY - destY) == 2) && (board.getPiece(destX, destY)) == ' ' && (initX == 6))
+                    {
+                        moveable = true;
+                    }
+                }
+                else if (Math.Abs(initX - destX) == 1 && (initY - destY) == 1 && !(board.getPiece(destX, destY) == ' '))
+                {
+                    moveable = true;
+                }
+                else if (entpassant()) // need to figure out how this works 
+                {
+                   
+                }
+            } 
+            else
+            {
+                if (initX == destX)
+                {
+                    if (((destY - initY == 1) && (board.getPiece(destX, destY)) == ' '))
+                    {
+                        moveable = true;
+                    }
+                    else if (((destY - initY) == 2) && (board.getPiece(destX, destY)) == ' ' && (initX == 2))
+                    {
+                        moveable = true;
+                    }
+                }
+                else if (Math.Abs(initX - destX) == 1 && (initY - destY) == 1 && !(board.getPiece(destX, destY) == ' '))
+                {
+                    moveable = true;
+                }
+                else if (entpassant()) // need to figure out how this works 
+                {
+
+                }
+            }
+            return moveable; }
         public bool moveRook(int initX, int initY, int destX, int destY)
         {
             bool moveable = false; 
@@ -167,18 +214,18 @@ namespace ChessDesktopApplication.Movement
                     break;
                 case '♖':
                 case '♜':
-                  
+                    blocked = blockedMoveRook(initX, initY, destX, destY);
                     break;
                 case '♝':
                 case '♗':
+                    blocked = blockedMoveBishop(initX, initY, destX, destY);
                     break;
- 
+
                 case '♚':
                 case '♔':
+                    blocked = blockedMoveQueen(initX, initY, destX, destY);
                     break;
-                case '♘':
-                case '♞':
-                    break;
+            
                 default:
                     return false;
                     
@@ -293,5 +340,13 @@ namespace ChessDesktopApplication.Movement
             board.setPiece(destX, destY, piece);
             board.setPiece(initX, initY, ' ');
         }
+    
+    public bool entpassant()
+    {
+        return false; 
+    }
+    public bool castling()
+    {
+        return false; 
     }
 }
