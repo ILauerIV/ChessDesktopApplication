@@ -66,11 +66,13 @@ namespace ChessDesktopApplication.Movement
                     break;
                 case '♛':
                 case '♕':
-                    moveKing(initX, initY, destX, destY);
+                    moveQueen(initX, initY, destX, destY);
+
                     break;
                 case '♚':
                 case '♔':
-                    moveQueen(initX, initY, destX, destY);
+                    moveKing(initX, initY, destX, destY);
+
                     break;
                 case '♘':
                 case '♞':

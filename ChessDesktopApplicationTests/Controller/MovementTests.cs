@@ -124,18 +124,22 @@ namespace ChessDesktopApplication.Movement.Tests
         {
             Board board = new Board();
             Movement move = new Movement(board);
-            Assert.IsFalse(move.movePiece(0, 5, 0, 4));
-            Assert.IsFalse(move.movePiece(0, 5, -1, 4));
-            Assert.IsFalse(move.movePiece(0, 5, 1, 4));
-            Assert.IsFalse(move.movePiece(0, 5, 1,5 ));
-            Assert.IsFalse(move.movePiece(0, 5, 4, 4)); //failed 
-            Assert.IsFalse(move.movePiece(0, 5, 0, 5));
-            Assert.IsFalse(move.movePiece(0, 5, 0, 3));
+            Assert.IsFalse(move.movePiece(0, 3, 0, 4));
+            Assert.IsFalse(move.movePiece(0, 3, -1, 4));
+            Assert.IsFalse(move.movePiece(0, 3, 1, 4));
+            Assert.IsFalse(move.movePiece(0, 3, 1,5 ));
+            Console.OutputEncoding = System.Text.Encoding.Unicode;
+
+            Console.Write(board);
+            Console.Read();
+            Assert.IsFalse(move.movePiece(0, 3, 4, 4)); //failed 
+            Assert.IsFalse(move.movePiece(0, 3, 0, 5));
+            Assert.IsFalse(move.movePiece(0, 3, 0, 3));
             board.setPiece(1, 5, ' ');
-            Assert.IsTrue(move.movePiece(0, 5, 1, 5));
-            Assert.IsTrue(move.movePiece(1, 5, 0, 5));
-            Assert.IsTrue(move.movePiece(0, 5, 4, 5));
-            Assert.IsTrue(move.movePiece(4, 5, 4, 0));
+            Assert.IsTrue(move.movePiece(0, 3, 1, 5));
+            Assert.IsTrue(move.movePiece(1, 3, 0, 5));
+            Assert.IsTrue(move.movePiece(0, 3, 4, 5));
+            Assert.IsTrue(move.movePiece(4, 3, 4, 0));
             Assert.IsTrue(move.movePiece(4, 0, 4, 7));
             Assert.IsTrue(move.movePiece(4, 7, 4, 4));
             Assert.IsTrue(move.movePiece(4, 4, 6, 6));
