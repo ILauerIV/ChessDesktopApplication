@@ -376,9 +376,18 @@ namespace ChessDesktopApplication.Movement
             }
             if (white && left)
             {
-                if (destX == 2)
+                if (destX == 2) // if they king is moving to right space
                 {
-                    if (board.getPiece(7, 0) == '♖')
+                    if (board.getPiece(7, 0) == '♖') // if the rook is still in position
+                    {
+                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(7,0,7,3))) // if nothing is between the rook and king
+                            {
+                            board.setPiece(initX, initY, ' ');
+                            board.setPiece(7, 0, ' ');
+                            board.setPiece(destX, destY, piece);
+                            board.setPiece(7, 3, '♖');
+                        }
+                    }
                 }
             }
             else if (white && !left)
