@@ -130,8 +130,7 @@ namespace ChessDesktopApplication.Movement.Tests
             Assert.IsFalse(move.movePiece(0, 3, 1,5 ));
             Console.OutputEncoding = System.Text.Encoding.Unicode;
 
-            Console.Write(board);
-            Console.Read();
+           
             Assert.IsFalse(move.movePiece(0, 3, 4, 4)); //failed 
             Assert.IsFalse(move.movePiece(0, 3, 0, 5));
             Assert.IsFalse(move.movePiece(0, 3, 0, 3));

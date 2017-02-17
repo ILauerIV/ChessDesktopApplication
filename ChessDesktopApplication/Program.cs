@@ -1,20 +1,41 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChessDesktopApplication.Model
+namespace ChessDesktopApplication
 {
-    class Program
-    {
-        static void Main(string[] args)
+  
+
+    
+        class Program
         {
-            Console.OutputEncoding = System.Text.Encoding.Unicode;
-            Board board = new Board();
-            board.movePiece("73", "04");
-            Console.Write(board.ToString());
-         //   Console.Read();
+            static void Main(string[] args)
+            {
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\test.txt"))
+            {
+              
+                Board board = new Board();
+
+                Movement move = new Movement(board);
+                file.Write(move.movePiece(0, 3, 0, 4) + System.Environment.NewLine);
+                file.Write(board.ToString());
+                file.Write(move.movePiece(0, 3, -1, 4) + System.Environment.NewLine);
+                file.Write(board.ToString());
+                file.Write(move.movePiece(0, 3, 1, 4) + System.Environment.NewLine);
+                file.Write(board.ToString());
+                file.Write(move.movePiece(0, 3, 1, 5) + System.Environment.NewLine );
+                file.Write(board.ToString());
+                
+
+
+                file.Write(move.movePiece(0, 3, 4, 4) + Environment.NewLine);
+                file.Write(board.ToString());
+                file.Close(); 
+            }
+            }
         }
     }
-}
+

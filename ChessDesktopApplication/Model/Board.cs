@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 /**
  * This class describes the chessboard and holds all of the pieces.
  * */
-namespace ChessDesktopApplication.Model
+namespace ChessDesktopApplication
 {
    public class Board
     {
@@ -134,7 +134,8 @@ namespace ChessDesktopApplication.Model
                 {
                     fin = fin + board[i, j];
                 }
-                fin = fin + "\n";
+                // fin = fin + "\n";
+                fin = fin + System.Environment.NewLine;
             }
             return fin;
         }

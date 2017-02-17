@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessDesktopApplication.Model;
 
-namespace ChessDesktopApplication.Movement
+
+namespace ChessDesktopApplication
 {
     public class Movement
     {
@@ -16,7 +16,7 @@ namespace ChessDesktopApplication.Movement
         }
         public Movement()
         {
-            board = new Model.Board();
+            board = new Board();
         }
         /**
          * moves a piece on the board by taking the moving piecs coordinate
@@ -49,40 +49,40 @@ namespace ChessDesktopApplication.Movement
             }
             // Boolean isWhite = Board.whitePieces.Contains(piece);
 
-
+            bool moved = false; 
             switch (piece)
             {
                 case '♙':
                 case '♟':
-                    movePawn(initX, initY, destX, destY);
+                   moved = movePawn(initX, initY, destX, destY);
                     break;
                 case '♖':
                 case '♜':
-                    moveRook(initX, initY, destX, destY);
+                    moved = moveRook(initX, initY, destX, destY);
                     break;
                 case '♝':
                 case '♗':
-                    moveBishop(initX, initY, destX, destY);
+                   moved = moveBishop(initX, initY, destX, destY);
                     break;
                 case '♛':
                 case '♕':
-                    moveQueen(initX, initY, destX, destY);
+                    moved = moveQueen(initX, initY, destX, destY);
 
                     break;
                 case '♚':
                 case '♔':
-                    moveKing(initX, initY, destX, destY);
+                    moved = moveKing(initX, initY, destX, destY);
 
                     break;
                 case '♘':
                 case '♞':
-                    moveKnight(initX, initY, destX, destY);
+                 moved =    moveKnight(initX, initY, destX, destY);
                     break;
                 default:
                     return false;
                     break;
             }
-            return true;
+            return moved;
         }
 
         public bool moveKing(int initX, int initY, int destX, int destY)
