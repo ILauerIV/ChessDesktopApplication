@@ -80,7 +80,7 @@ namespace ChessDesktopApplication
                     break;
                 default:
                     return false;
-                    break;
+                   // break;
             }
             return moved;
         }
@@ -141,13 +141,13 @@ namespace ChessDesktopApplication
             bool moveable = false;
             if (isWhite)
             {
-                if (initX == destX)
+                if (initY == destY)
                 {
-                    if (((initY - destY) == 1) && (board.getPiece(destX, destY)) == ' ')
+                    if (((initX - destX) == 1) && (board.getPiece(destX, destY)) == ' ')
                     {
                         moveable = true;
                     }
-                    else if (((initY - destY) == 2) && (board.getPiece(destX, destY)) == ' ' && (initX == 6))
+                    else if (((initX - destX) == 2) && (board.getPiece(destX, destY)) == ' ' && (initX == 6))
                     {
                         moveable = true;
                     }
@@ -163,13 +163,13 @@ namespace ChessDesktopApplication
             }
             else
             {
-                if (initX == destX)
+                if (initY == destY)
                 {
-                    if (((destY - initY == 1) && (board.getPiece(destX, destY)) == ' '))
+                    if (((destX - initX == 1) && (board.getPiece(destX, destY)) == ' '))
                     {
                         moveable = true;
                     }
-                    else if (((destY - initY) == 2) && (board.getPiece(destX, destY)) == ' ' && (initX == 2))
+                    else if (((destX - initX == 2) && (board.getPiece(destX, destY)) == ' ' && (initX == 2)))
                     {
                         moveable = true;
                     }
@@ -233,8 +233,8 @@ namespace ChessDesktopApplication
                     blocked = blockedMoveBishop(initX, initY, destX, destY);
                     break;
 
-                case '♚':
-                case '♔':
+                case '♛':
+                case '♕':
                     blocked = blockedMoveQueen(initX, initY, destX, destY);
                     break;
 
