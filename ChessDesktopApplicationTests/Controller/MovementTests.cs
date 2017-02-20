@@ -134,7 +134,6 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(3, 5, 5, 4));
             Assert.IsFalse(move.movePiece( 3, 5,2, 5));
         }
-        [TestMethod()]
         public void moveKingTest1()
         {
             Board board = new Board();
@@ -147,31 +146,31 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(7, 3, 6, 4));
             Assert.IsFalse(move.movePiece(7, 3, 8, 4));
             Assert.IsFalse(move.movePiece(7, 3, 8, 2));
-            Assert.IsFalse(move.movePiece(7, 3, 4, 3)); //fail
+            Assert.IsFalse(move.movePiece(7, 3, 4, 3));
             Assert.IsFalse(move.movePiece(7, 3, 7, 0));
             Assert.IsFalse(move.movePiece(7, 3, 7, 6));
             Assert.IsFalse(move.movePiece(7, 3, 10, 3));
             board.setPiece(4, 5, ' ');
             Assert.IsTrue(move.movePiece(7, 3, 6, 3));
-            Assert.IsTrue(move.movePiece(7, 3, 6, 3));
-            Assert.IsFalse(move.movePiece(7, 3, 0, 0));
-            Assert.IsTrue(move.movePiece(7, 3, 7, 2));
-            Assert.IsTrue(move.movePiece(7, 3, 7, 4));
-            Assert.IsTrue(move.movePiece(7, 3, 8, 3));
-            Assert.IsTrue(move.movePiece(7, 3, 6, 3));
-            Assert.IsTrue(move.movePiece(7, 3, 6, 2));
-            Assert.IsTrue(move.movePiece(6, 2, 7, 3));
-            Assert.IsTrue(move.movePiece(7, 3, 6, 4));
-            Assert.IsTrue(move.movePiece(6, 4, 7, 3));
-            Assert.IsFalse(move.movePiece(7, 3, 7, 1));
-            Assert.IsFalse(move.movePiece(7, 3, 7, 5));
-            Assert.IsFalse(move.movePiece(7, 3, 9, 3));
-            Assert.IsFalse(move.movePiece(7, 3, 5, 3));
-            Assert.IsFalse(move.movePiece(7, 3, 5, 1));
-            Assert.IsFalse(move.movePiece(7, 3, 9, 5));
-            Assert.IsFalse(move.movePiece(7, 3, 5, 5));
-            Assert.IsFalse(move.movePiece(7, 3, 9, 1));
-            Assert.IsTrue(move.movePiece(7, 3, 6, 3));
+            Assert.IsTrue(move.movePiece(6, 3, 5, 3));
+            Assert.IsFalse(move.movePiece(5, 3, 0, 0));
+            Assert.IsTrue(move.movePiece(5, 3, 5, 2));
+            Assert.IsTrue(move.movePiece(5, 2, 5, 3));
+            Assert.IsTrue(move.movePiece(5, 3, 6, 3));
+            Assert.IsTrue(move.movePiece(6, 3, 5, 3));
+            Assert.IsTrue(move.movePiece(5, 3, 4, 2));
+            Assert.IsTrue(move.movePiece(4, 2, 5, 3));
+            Assert.IsTrue(move.movePiece(5, 3, 4, 4));
+            Assert.IsTrue(move.movePiece(4, 4, 5, 3));
+            Assert.IsFalse(move.movePiece(5, 3, 5, 1));
+            Assert.IsFalse(move.movePiece(5, 3, 5, 5));
+            Assert.IsFalse(move.movePiece(5, 3, 7, 3));
+            Assert.IsFalse(move.movePiece(5, 3, 3, 3));
+            Assert.IsFalse(move.movePiece(5, 3, 3, 1));
+            Assert.IsFalse(move.movePiece(5, 3, 7, 5));
+            Assert.IsFalse(move.movePiece(5, 3, 3, 5));
+            Assert.IsFalse(move.movePiece(5, 3, 7, 1));
+            Assert.IsTrue(move.movePiece(5, 3, 4, 3));
         }
         [TestMethod()]
         public void moveBishopTest()
@@ -193,7 +192,7 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(0, 2, -4, -2));
             Assert.IsFalse(move.movePiece(0, 2, -4, 6));
             Assert.IsFalse(move.movePiece(0, 2, 4, -2));
-            Assert.IsFalse(move.movePiece(0, 2, 4, 6)); //fail
+            Assert.IsFalse(move.movePiece(0, 2, 4, 6));
             board.setPiece(2, 1, ' ');
             board.setPiece(2, 3, ' ');
             Assert.IsTrue(move.movePiece(0, 2, 2, 0));
@@ -205,7 +204,7 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(4, 0, 3, 0));
             Assert.IsFalse(move.movePiece(4, 0, 5, 0));
         }
-             [TestMethod()]
+        [TestMethod()]
         public void moveRookTest()
         {
             Board board = new Board();
@@ -218,7 +217,7 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(7, 7, 6, 8));
             Assert.IsFalse(move.movePiece(7, 7, 8, 6));
             Assert.IsFalse(move.movePiece(7, 7, 8, 8));
-            Assert.IsFalse(move.movePiece(7, 7, 3, 7)); //fail
+            Assert.IsFalse(move.movePiece(7, 7, 3, 7));
             Assert.IsFalse(move.movePiece(7, 7, 11, 7));
             Assert.IsFalse(move.movePiece(7, 7, 7, 3));
             Assert.IsFalse(move.movePiece(7, 7, 7, 11));
@@ -228,30 +227,48 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(7, 7, 11, 11));
             board.setPiece(6, 7, ' ');
             Assert.IsTrue(move.movePiece(7, 7, 4, 7));
-            Assert.IsTrue(move.movePiece(7, 7, 7, 4));
-            Assert.IsFalse(move.movePiece(7, 7, 6, 6));
-            Assert.IsFalse(move.movePiece(7, 7, 6, 8));
-            Assert.IsFalse(move.movePiece(7, 7, 8, 6));
-            Assert.IsFalse(move.movePiece(7, 7, 8, 8));
-            Assert.IsFalse(move.movePiece(7, 7, 3, 3));
-            Assert.IsFalse(move.movePiece(7, 7, 3, 11));
-            Assert.IsFalse(move.movePiece(7, 7, 11, 3));
-            Assert.IsFalse(move.movePiece(7, 7, 11, 11));
-            Assert.IsTrue(move.movePiece(7, 7, 7, 10));
-            Assert.IsTrue(move.movePiece(7, 7, 7, 4));
-            Assert.IsTrue(move.movePiece(7, 7, 9, 7));
-            Assert.IsTrue(move.movePiece(7, 7, 5, 7));
-            Assert.IsFalse(move.movePiece(7, 7, 11, 7));
-            Assert.IsTrue(move.movePiece(7, 7, 3, 7));
-            Assert.IsTrue(move.movePiece(7, 7, 7, 6));
-            Assert.IsTrue(move.movePiece(7, 7, 7, 9));
-            Assert.IsFalse(move.movePiece(7, 7, 7, 4));
-            Assert.IsTrue(move.movePiece(7, 7, 6, 7));
-            Assert.IsFalse(move.movePiece(7, 7, 6, 7));
-            Assert.IsFalse(move.movePiece(7, 7, 7, 4));
+            Assert.IsTrue(move.movePiece(4, 7, 4, 4));
+            Assert.IsFalse(move.movePiece(4, 4, 3, 3));
+            Assert.IsFalse(move.movePiece(4, 4, 3, 5));
+            Assert.IsFalse(move.movePiece(4, 4, 5, 3));
+            Assert.IsFalse(move.movePiece(4, 4, 5, 5));
+            Assert.IsFalse(move.movePiece(4, 4, 0, 0));
+            Assert.IsFalse(move.movePiece(4, 4, 0, 8));
+            Assert.IsFalse(move.movePiece(4, 4, 8, 0));
+            Assert.IsFalse(move.movePiece(4, 4, 8, 8));
+            Assert.IsTrue(move.movePiece(4, 4, 4, 7));
+            Assert.IsTrue(move.movePiece(4, 7, 4, 4));
+            Assert.IsFalse(move.movePiece(4, 4, 6, 4)); 
+            Assert.IsFalse(move.movePiece(6, 4, 4, 4));
+            Assert.IsFalse(move.movePiece(4, 4, 8, 4));
+            Assert.IsTrue(move.movePiece(4, 4, 1, 4)); 
+            Assert.IsTrue(move.movePiece(1, 4, 1, 3));
+            Assert.IsTrue(move.movePiece(1, 3, 2, 3));
+            Assert.IsTrue(move.movePiece(2, 3, 0, 3));
+          
         }
-
-       
+        [TestMethod()]
+        public void moveQueenTest1()
+        {
+            Board board = new Board();
+            Movement move = new Movement(board);
+            Assert.IsFalse(move.movePiece(0, 3, -1, 3));
+            Assert.IsFalse(move.movePiece(0, 3, 1, 3));
+            Assert.IsFalse(move.movePiece(0, 3, 0, 2));
+            Assert.IsFalse(move.movePiece(0, 3, 0, 4));
+            Assert.IsFalse(move.movePiece(0, 3, -1, 2));
+            Assert.IsFalse(move.movePiece(0, 3, -1, 4));
+            Assert.IsFalse(move.movePiece(0, 3, 1, 2));
+            Assert.IsFalse(move.movePiece(0, 3, 1, 4));
+            Assert.IsFalse(move.movePiece(0, 3, -4, 3));
+            Assert.IsFalse(move.movePiece(0, 3, 4, 3)); //failed
+            Assert.IsFalse(move.movePiece(0, 3, 0, -1));
+            Assert.IsFalse(move.movePiece(0, 3, 0, 7));
+            Assert.IsFalse(move.movePiece(0, 3, -4, -1));
+            Assert.IsFalse(move.movePiece(0, 3, -4, 7));
+            Assert.IsFalse(move.movePiece(0, 3, 4, -1));
+            Assert.IsFalse(move.movePiece(0, 3, 4, 7));
+        }
 
         [TestMethod()]
         public void blockedMoveTest()

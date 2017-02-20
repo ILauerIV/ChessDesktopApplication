@@ -196,11 +196,12 @@ namespace ChessDesktopApplication
             {
                 moveable = true;
             }
-            if (moveable && !blockedMove(initX, initY, destX, destY))
+            bool blocked = blockedMove(initX, initY, destX, destY);
+            if (moveable && !blocked)
             {
                 move(initX, initY, destX, destY);
             }
-            return moveable;
+            return moveable && !blocked;
         }
         public bool moveBishop(int initX, int initY, int destX, int destY)
         {
@@ -322,7 +323,7 @@ namespace ChessDesktopApplication
             {
                 int high = Math.Max(initY, destY);
                 int low = Math.Min(initY, destY);
-                for (int i = low; i < high; ++i)
+                for (int i = low + 1; i < high; ++i)
                 {
                     if (!board.getPiece(initX, i).Equals(' '))
                     {
@@ -335,11 +336,11 @@ namespace ChessDesktopApplication
             {
                 int high = Math.Max(initX, destX);
                 int low = Math.Min(initX, destX);
-                for (int i = low; i < high; ++i)
+                for (int i = low + 1; i < high; ++i)
                 {
                     if (!board.getPiece(i, initY).Equals(' '))
                     {
-                        return blocked;
+                        return true;
                     }
                 }
                 blocked = false;
