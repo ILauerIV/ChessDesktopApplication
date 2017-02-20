@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-/**
- * This class describes the chessboard and holds all of the pieces.
- * */
+
+/// <summary>
+///  This class describes the chessboard and holds all of the pieces.
+/// </summary>
 namespace ChessDesktopApplication
 {
    public class Board
