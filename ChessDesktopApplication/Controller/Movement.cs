@@ -111,11 +111,12 @@ namespace ChessDesktopApplication
             {
                 moveable = true;
             }
-            if (moveable && !blockedMove(initX, initY, destX, destY))
+            bool blocked = blockedMove(initX, initY, destX, destY);
+            if (moveable && !blocked )
             {
                 move(initX, initY, destX, destY);
             }
-            return moveable;
+            return moveable && !blocked;
         }
         /**
          * Checks if a knight can move. It does this by calculating the angle between the 
@@ -210,11 +211,12 @@ namespace ChessDesktopApplication
             {
                 moveable = true;
             }
-            if (moveable && !blockedMove(initX, initY, destX, destY))
+            bool blocked = blockedMove(initX, initY, destX, destY);
+            if (moveable && !blocked)
             {
                 move(initX, initY, destX, destY);
             }
-            return moveable;
+            return moveable && !blocked;
         }
         public bool blockedMove(int initX, int initY, int destX, int destY)
         {
@@ -254,7 +256,7 @@ namespace ChessDesktopApplication
         {
             bool blocked = false;
             int direction = -1; // Based upon quadrant system, so NE = 1, NW = 2, SW = 3, SE = 4
-            if (initX < destX)
+            if (initX > destX)
             {
                 if (initY < destY)
                 {
@@ -262,14 +264,14 @@ namespace ChessDesktopApplication
                 }
                 else if (initY > destY)
                 {
-                    direction = 4;
+                    direction = 2;
                 }
             }
-            else if (initX > destX)
+            else if (initX < destX)
             {
                 if (initY < destY)
                 {
-                    direction = 2;
+                    direction = 4;
                 }
                 else if (initY > destY)
                 {
@@ -280,22 +282,22 @@ namespace ChessDesktopApplication
             int y = initY;
             while (true) // this is a pain to write. I need to check all the spaces exclusive the inital and destination spaces 
             {
-                if (direction == 1)
+                if (direction == 4)
                 {
                     x += 1;
+                    y += 1;
+                }
+                else if (direction == 1) // okay 
+                {
+                    x += -1;
                     y += 1;
                 }
                 else if (direction == 2)
                 {
                     x += -1;
-                    y += 1;
-                }
-                else if (direction == 3)
-                {
-                    x += -1;
                     y += -1;
                 }
-                else if (direction == 4)
+                else if (direction == 3)
                 {
                     x += 1;
                     y += -1;
