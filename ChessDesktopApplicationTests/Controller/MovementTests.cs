@@ -128,6 +128,7 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(3, 5, 5, 4));
             Assert.IsFalse(move.movePiece( 3, 5,2, 5));
         }
+       // [TestMethod()]
         public void moveKingTest1()
         {
             Board board = new Board();
@@ -144,7 +145,7 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(7, 3, 7, 0));
             Assert.IsFalse(move.movePiece(7, 3, 7, 6));
             Assert.IsFalse(move.movePiece(7, 3, 10, 3));
-            board.setPiece(4, 5, ' ');
+            board.setPiece(6, 3, ' ');
             Assert.IsTrue(move.movePiece(7, 3, 6, 3));
             Assert.IsTrue(move.movePiece(6, 3, 5, 3));
             Assert.IsFalse(move.movePiece(5, 3, 0, 0));
@@ -156,7 +157,7 @@ namespace ChessDesktopApplication
             Assert.IsTrue(move.movePiece(4, 2, 5, 3));
             Assert.IsTrue(move.movePiece(5, 3, 4, 4));
             Assert.IsTrue(move.movePiece(4, 4, 5, 3));
-            Assert.IsFalse(move.movePiece(5, 3, 5, 1));
+            Assert.IsFalse(move.movePiece(5, 3, 5, 1)); //fail
             Assert.IsFalse(move.movePiece(5, 3, 5, 5));
             Assert.IsFalse(move.movePiece(5, 3, 7, 3));
             Assert.IsFalse(move.movePiece(5, 3, 3, 3));
@@ -165,6 +166,21 @@ namespace ChessDesktopApplication
             Assert.IsFalse(move.movePiece(5, 3, 3, 5));
             Assert.IsFalse(move.movePiece(5, 3, 7, 1));
             Assert.IsTrue(move.movePiece(5, 3, 4, 3));
+        }
+        [TestMethod()]
+        public void moveKingCastling()
+        {
+            Board board = new Board();
+            Movement move = new Movement(board);
+            board.setPiece(7, 1, ' ');
+            board.setPiece(7, 2, ' ');
+            board.setPiece(7, 3, ' ');
+            Assert.IsTrue(move.movePiece(7, 4, 7, 2));
+            board.setPiece(0, 5, ' ');
+            board.setPiece(0, 6, ' ');
+            Assert.IsTrue(move.movePiece(0, 4, 0,6));
+            Assert.IsTrue(board.getPiece(0, 5) == '♜');
+            Assert.IsTrue(board.getPiece(7, 3) == '♖');
         }
         [TestMethod()]
         public void moveBishopTest()

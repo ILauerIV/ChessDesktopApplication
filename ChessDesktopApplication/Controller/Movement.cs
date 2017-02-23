@@ -370,27 +370,27 @@ namespace ChessDesktopApplication
             char piece = board.getPiece(initX, initY);
             bool left = false;
             bool white = Board.isWhite(piece);
-            if (initX > destX)
+            if (initY > destY)
             {
                 left = true;
             }
             if (white)
             {
-                if (!(initX == 4 && initY == 7) || destY != 7)
+                if (!(initX == 7 && initY == 4) || destX != 7)
                 {
                     return false;
                 }
             }
             else
             {
-                if (!(initX == 4 && initY == 0) || destY != 0)
+                if (!(initX == 0 && initY == 4) || destX != 0)
                 {
                     return false;
                 }
             }
             if (white && left)
             {
-                if (destX == 2) // if they king is moving to right space
+                if (destY == 2) // if they king is moving to right space
                 {
                     if (board.getPiece(7, 0) == '♖') // if the rook is still in position
                     {
@@ -407,7 +407,7 @@ namespace ChessDesktopApplication
             }
             else if (white && !left)
             {
-                if (destX == 6)
+                if (destY == 6)
                 {
                     if (board.getPiece(7, 7) == '♖') // if the rook is still in position
                     {
@@ -424,7 +424,7 @@ namespace ChessDesktopApplication
             }
             else if (!white && left)
             {
-                if (destX == 2) // if they king is moving to right space
+                if (destY == 2) // if they king is moving to right space
                 {
                     if (board.getPiece(0, 0) == '♜') // if the rook is still in position
                     {
@@ -441,7 +441,7 @@ namespace ChessDesktopApplication
             }
             else if (!white && !left)
             {
-                if (destX == 6)
+                if (destY == 6)
                 {
                     if (board.getPiece(0, 7) == '♜') // if the rook is still in position
                     {
