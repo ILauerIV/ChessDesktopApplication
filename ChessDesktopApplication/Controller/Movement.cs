@@ -127,7 +127,7 @@ namespace ChessDesktopApplication
             bool moveable = false;
             float angle = -1;
             float y = Math.Abs(initY - destY);
-            float x = Math.Abs(initX - destY);
+            float x = Math.Abs(initX - destX);
             angle = x / y;
             if ((x + y) == 3 && ((angle == 2.0) || (angle == -2.0) || (angle == .5) || (angle == -.5)))
             {
@@ -249,7 +249,10 @@ namespace ChessDesktopApplication
         }
         private bool blockedMoveQueen(int initX, int initY, int destX, int destY)
         {
-            return (!blockedMoveBishop(initX, initY, destX, destY)) || (!blockedMoveRook(initX, initY, destX, destY));
+            bool blockedBishop = blockedMoveBishop(initX, initY, destX, destY);
+            bool blockedRook = blockedMoveRook(initX, initY, destX, destY);
+            
+            return blockedRook && blockedBishop; 
         }
         // this function makes me feel bad. 
         private bool blockedMoveBishop(int initX, int initY, int destX, int destY)
@@ -308,7 +311,8 @@ namespace ChessDesktopApplication
                 }
                 if (x == destX)
                 {
-                    break;
+                   // blocked = false;
+                    break; 
                 }
                 if (!(board.getPiece(x, y) == ' '))
                 {
