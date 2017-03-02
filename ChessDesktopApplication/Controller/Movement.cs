@@ -18,12 +18,17 @@ namespace ChessDesktopApplication
         {
             board = new Board();
         }
-        /**
-         * moves a piece on the board by taking the moving piecs coordinate
-         * and the coordinate of the destination space
-         * Check if the move is legal
-         * Move should not be: Out of Bounds, to the same space, onto a piece of the same color
-         */
+        /// <summary>
+        /// moves a piece on the board by taking the moving piecs coordinate
+        /// and the coordinate of the destination space
+        ///Check if the move is legal
+        /// Move should not be: Out of Bounds, to the same space, onto a piece of the same color
+        /// </summary>
+        /// <param name="initX"></param>
+        /// <param name="initY"></param>
+        /// <param name="destX"></param>
+        /// <param name="destY"></param>
+        /// <returns></returns>
         public bool movePiece(int initX, int initY, int destX, int destY)
         {
             if (Board.outofBounds(initX, initY))
@@ -48,7 +53,10 @@ namespace ChessDesktopApplication
                 return false;
             }
             // Boolean isWhite = Board.whitePieces.Contains(piece);
-
+            if (piece == ' ')
+            {
+                return false; 
+            }
             bool moved = false; 
             switch (piece)
             {
@@ -218,6 +226,16 @@ namespace ChessDesktopApplication
             }
             return moveable && !blocked;
         }
+
+        /// <summary>
+        /// Checks to see if there is a piece between the piece and its destination,
+        /// does not check king or knight
+        /// </summary>
+        /// <param name="initX"></param>
+        /// <param name="initY"></param>
+        /// <param name="destX"></param>
+        /// <param name="destY"></param>
+        /// <returns></returns>
         public bool blockedMove(int initX, int initY, int destX, int destY)
         {
             Boolean blocked = false;
