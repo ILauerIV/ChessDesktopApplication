@@ -38,4 +38,7 @@ namespace ChessDesktopApplication
             }
         }
     }
-
+/// OVER ALL TD's
+/// TODO: Understand what all the player needs to input
+/// TODO: Decide how pawn promotion will work
+/// TODO:Refactor?

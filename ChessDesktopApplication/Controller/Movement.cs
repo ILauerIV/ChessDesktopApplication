@@ -378,10 +378,12 @@ namespace ChessDesktopApplication
             board.setPiece(initX, initY, ' ');
         }
 
-        public bool entpassant()
+        public bool entpassant() ///TODO: Add entpassant to movement
         {
             return false;
         }
+        public bool pawnPremotion() { return false; } ///TODO: Make Function for Pawn promotion
+
         public bool castling(int initX, int initY, int destX, int destY)
         {
             bool castle = false;

@@ -36,10 +36,11 @@ namespace ChessDesktopApplication.Controller
         /// <param name="destY"></param>
         /// <param name="isWhite"></param>
         /// <returns></returns>
-        public bool turn(int initX, int initY, int destX, int destY)
+        public bool turn(int initX, int initY, int destX, int destY)  ///TODO: make sure turns can be recorded with speical moves  
         {
             bool moved;
             char piece = board.getPiece(initX, initY);
+            char destPiece = board.getPiece(destX, destY);
             bool pieceIsWhite =Board.isWhite( board.getPiece(initX, initY));
             if (pieceIsWhite != whitesTurn)
             {
@@ -49,11 +50,12 @@ namespace ChessDesktopApplication.Controller
             if (moved)
             {
                 whitesTurn = !pieceIsWhite;
-                record.recordTurn(initX, initY, destX, destY);
+                record.recordTurn(initX, initY, destX, destY,piece,destPiece);
             }
             return moved; 
         }
         
-        public bool endGame() { return false; }
+        public bool endGame() { return false; } ///TODO: Make function to see if checkmate as occured
+        public bool check () { return false; } ///TODO: Make function to see if king is in checks 
     }
 }
