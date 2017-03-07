@@ -7,17 +7,10 @@ using System.Threading.Tasks;
 
 namespace ChessDesktopApplication
 {
-    public class Movement
+    public static class Movement
     {
-        Board board;
-        public Movement(Board b)
-        {
-            board = b;
-        }
-        public Movement()
-        {
-            board = new Board();
-        }
+     //   Board board;
+       
         /// <summary>
         /// moves a piece on the board by taking the moving piecs coordinate
         /// and the coordinate of the destination space
@@ -29,7 +22,7 @@ namespace ChessDesktopApplication
         /// <param name="destX"></param>
         /// <param name="destY"></param>
         /// <returns></returns>
-        public bool movePiece(int initX, int initY, int destX, int destY)
+        public static bool movePiece(int initX, int initY, int destX, int destY, Board board)
         {
             if (Board.outofBounds(initX, initY))
             {
@@ -57,34 +50,35 @@ namespace ChessDesktopApplication
             {
                 return false; 
             }
+            
             bool moved = false; 
             switch (piece)
             {
                 case '♙':
                 case '♟':
-                   moved = movePawn(initX, initY, destX, destY);
+                   moved = movePawn(initX, initY, destX, destY, board);
                     break;
                 case '♖':
                 case '♜':
-                    moved = moveRook(initX, initY, destX, destY);
+                    moved = moveRook(initX, initY, destX, destY, board);
                     break;
                 case '♝':
                 case '♗':
-                   moved = moveBishop(initX, initY, destX, destY);
+                   moved = moveBishop(initX, initY, destX, destY, board);
                     break;
                 case '♛':
                 case '♕':
-                    moved = moveQueen(initX, initY, destX, destY);
+                    moved = moveQueen(initX, initY, destX, destY, board);
 
                     break;
                 case '♚':
                 case '♔':
-                    moved = moveKing(initX, initY, destX, destY);
+                    moved = moveKing(initX, initY, destX, destY, board);
 
                     break;
                 case '♘':
                 case '♞':
-                 moved =    moveKnight(initX, initY, destX, destY);
+                 moved =    moveKnight(initX, initY, destX, destY, board);
                     break;
                 default:
                     return false;
@@ -93,22 +87,22 @@ namespace ChessDesktopApplication
             return moved;
         }
 
-        public bool moveKing(int initX, int initY, int destX, int destY)
+        public static bool moveKing(int initX, int initY, int destX, int destY, Board board)
         {
             bool moveable = false;
             if ((Math.Abs(initY - destY) <= 1) && (Math.Abs(initX - destX) <= 1))
 
             {
                 moveable = true;
-                move(initX, initY, destX, destY);
+                move(initX, initY, destX, destY, board);
             }
             else
             {
-                moveable = castling(initX, initY, destX, destY);
+                moveable = castling(initX, initY, destX, destY, board);
             }
             return moveable;
         }
-        public bool moveQueen(int initX, int initY, int destX, int destY)
+        public static bool moveQueen(int initX, int initY, int destX, int destY, Board board)
         {
             bool moveable = false;
             if (Math.Abs(initX - destX) == Math.Abs(initY - destY))
@@ -119,10 +113,10 @@ namespace ChessDesktopApplication
             {
                 moveable = true;
             }
-            bool blocked = blockedMove(initX, initY, destX, destY);
+            bool blocked = blockedMove(initX, initY, destX, destY, board);
             if (moveable && !blocked )
             {
-                move(initX, initY, destX, destY);
+                move(initX, initY, destX, destY, board);
             }
             return moveable && !blocked;
         }
@@ -130,7 +124,7 @@ namespace ChessDesktopApplication
          * Checks if a knight can move. It does this by calculating the angle between the 
          * inital and destination spaces and by making sure the x and y movement equals 3
          */
-        public bool moveKnight(int initX, int initY, int destX, int destY)
+        public static bool moveKnight(int initX, int initY, int destX, int destY, Board board)
         {
             bool moveable = false;
             float angle = -1;
@@ -140,11 +134,11 @@ namespace ChessDesktopApplication
             if ((x + y) == 3 && ((angle == 2.0) || (angle == -2.0) || (angle == .5) || (angle == -.5)))
             {
                 moveable = true;
-                move(initX, initY, destX, destY);
+                move(initX, initY, destX, destY, board);
             }
             return moveable;
         }
-        public bool movePawn(int initX, int initY, int destX, int destY)
+        public static bool movePawn(int initX, int initY, int destX, int destY, Board board)
         {
             bool isWhite = Board.isWhite(board.getPiece(initX, initY));
             bool moveable = false;
@@ -194,35 +188,35 @@ namespace ChessDesktopApplication
             }
             if (moveable)
             {
-                move(initX, initY, destX, destY);
+                move(initX, initY, destX, destY, board);
             }
             return moveable;
         }
-        public bool moveRook(int initX, int initY, int destX, int destY)
+        public static bool moveRook(int initX, int initY, int destX, int destY, Board board)
         {
             bool moveable = false;
             if ((initX == destX) || (initY == destY))
             {
                 moveable = true;
             }
-            bool blocked = blockedMove(initX, initY, destX, destY);
+            bool blocked = blockedMove(initX, initY, destX, destY, board);
             if (moveable && !blocked)
             {
-                move(initX, initY, destX, destY);
+                move(initX, initY, destX, destY, board);
             }
             return moveable && !blocked;
         }
-        public bool moveBishop(int initX, int initY, int destX, int destY)
+        public static bool moveBishop(int initX, int initY, int destX, int destY, Board board)
         {
             bool moveable = false;
             if (Math.Abs(initX - destX) == Math.Abs(initY - destY))
             {
                 moveable = true;
             }
-            bool blocked = blockedMove(initX, initY, destX, destY);
+            bool blocked = blockedMove(initX, initY, destX, destY, board);
             if (moveable && !blocked)
             {
-                move(initX, initY, destX, destY);
+                move(initX, initY, destX, destY, board);
             }
             return moveable && !blocked;
         }
@@ -236,7 +230,7 @@ namespace ChessDesktopApplication
         /// <param name="destX"></param>
         /// <param name="destY"></param>
         /// <returns></returns>
-        public bool blockedMove(int initX, int initY, int destX, int destY)
+        public static bool blockedMove(int initX, int initY, int destX, int destY, Board board)
         {
             Boolean blocked = false;
             char piece = board.getPiece(initX, initY);
@@ -247,16 +241,16 @@ namespace ChessDesktopApplication
                     break;
                 case '♖':
                 case '♜':
-                    blocked = blockedMoveRook(initX, initY, destX, destY);
+                    blocked = blockedMoveRook(initX, initY, destX, destY, board);
                     break;
                 case '♝':
                 case '♗':
-                    blocked = blockedMoveBishop(initX, initY, destX, destY);
+                    blocked = blockedMoveBishop(initX, initY, destX, destY, board);
                     break;
 
                 case '♛':
                 case '♕':
-                    blocked = blockedMoveQueen(initX, initY, destX, destY);
+                    blocked = blockedMoveQueen(initX, initY, destX, destY, board);
                     break;
 
                 default:
@@ -265,15 +259,15 @@ namespace ChessDesktopApplication
             }
             return blocked;
         }
-        private bool blockedMoveQueen(int initX, int initY, int destX, int destY)
+        private static bool blockedMoveQueen(int initX, int initY, int destX, int destY, Board board)
         {
-            bool blockedBishop = blockedMoveBishop(initX, initY, destX, destY);
-            bool blockedRook = blockedMoveRook(initX, initY, destX, destY);
+            bool blockedBishop = blockedMoveBishop(initX, initY, destX, destY, board);
+            bool blockedRook = blockedMoveRook(initX, initY, destX, destY, board);
             
             return blockedRook && blockedBishop; 
         }
         // this function makes me feel bad. 
-        private bool blockedMoveBishop(int initX, int initY, int destX, int destY)
+        private static bool blockedMoveBishop(int initX, int initY, int destX, int destY, Board board)
         {
             bool blocked = false;
             int direction = -1; // Based upon quadrant system, so NE = 1, NW = 2, SW = 3, SE = 4
@@ -339,7 +333,7 @@ namespace ChessDesktopApplication
             }
             return blocked;
         }
-        private bool blockedMoveRook(int initX, int initY, int destX, int destY)
+        private static bool blockedMoveRook(int initX, int initY, int destX, int destY, Board board)
         {
             bool blocked = true;
 
@@ -371,20 +365,20 @@ namespace ChessDesktopApplication
             }
             return blocked;
         }
-        private void move(int initX, int initY, int destX, int destY)
+        private static void move(int initX, int initY, int destX, int destY, Board board)
         {
             char piece = board.getPiece(initX, initY);
             board.setPiece(destX, destY, piece);
             board.setPiece(initX, initY, ' ');
         }
 
-        public bool entpassant() ///TODO: Add entpassant to movement
+        public static bool entpassant() ///TODO: Add entpassant to movement
         {
             return false;
         }
-        public bool pawnPremotion() { return false; } ///TODO: Make Function for Pawn promotion
+        public static bool pawnPremotion() { return false; } ///TODO: Make Function for Pawn promotion
 
-        public bool castling(int initX, int initY, int destX, int destY)
+        public static bool castling(int initX, int initY, int destX, int destY, Board board)
         {
             bool castle = false;
             char piece = board.getPiece(initX, initY);
@@ -414,7 +408,7 @@ namespace ChessDesktopApplication
                 {
                     if (board.getPiece(7, 0) == '♖') // if the rook is still in position
                     {
-                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(7, 0, 7, 3))) // if nothing is between the rook and king
+                        if (!(blockedMoveRook(initX, initY, destX, destY, board)) && !(blockedMove(7, 0, 7, 3, board))) // if nothing is between the rook and king
                         {
                             board.setPiece(initX, initY, ' ');
                             board.setPiece(7, 0, ' ');
@@ -431,7 +425,7 @@ namespace ChessDesktopApplication
                 {
                     if (board.getPiece(7, 7) == '♖') // if the rook is still in position
                     {
-                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(7, 7, 7, 5))) // if nothing is between the rook and king
+                        if (!(blockedMoveRook(initX, initY, destX, destY, board)) && !(blockedMove(7, 7, 7, 5, board))) // if nothing is between the rook and king
                         {
                             board.setPiece(initX, initY, ' ');
                             board.setPiece(7, 7, ' ');
@@ -448,7 +442,7 @@ namespace ChessDesktopApplication
                 {
                     if (board.getPiece(0, 0) == '♜') // if the rook is still in position
                     {
-                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(0, 0, 0, 3))) // if nothing is between the rook and king
+                        if (!(blockedMoveRook(initX, initY, destX, destY, board)) && !(blockedMove(0, 0, 0, 3, board))) // if nothing is between the rook and king
                         {
                             board.setPiece(initX, initY, ' ');
                             board.setPiece(0, 0, ' ');
@@ -465,7 +459,7 @@ namespace ChessDesktopApplication
                 {
                     if (board.getPiece(0, 7) == '♜') // if the rook is still in position
                     {
-                        if (!(blockedMoveRook(initX, initY, destX, destY)) && !(blockedMove(0, 7, 0, 5))) // if nothing is between the rook and king
+                        if (!(blockedMoveRook(initX, initY, destX, destY, board)) && !(blockedMove(0, 7, 0, 5, board))) // if nothing is between the rook and king
                         {
                             board.setPiece(initX, initY, ' ');
                             board.setPiece(0, 7, ' ');

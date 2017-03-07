@@ -16,7 +16,7 @@ namespace ChessDesktopApplication.Controller
         private Player white;
         private Player black;
         private Record record;
-        private Movement movement;
+       
         private bool whitesTurn; 
 
         public Play()
@@ -25,7 +25,7 @@ namespace ChessDesktopApplication.Controller
             white = new Model.Player(true);
             black = new Model.Player(false);
             record = new Record();
-            movement = new Movement(board);
+           
             whitesTurn = true;         }
         /// <summary>
         /// Counts as one turn for a a game. Its moves a piece then changes sets the next players turn if the move was succesful
@@ -46,7 +46,7 @@ namespace ChessDesktopApplication.Controller
             {
                 return false;
             }
-            moved =  movement.movePiece(initX, initY, destX, destY);
+            moved =  Movement.movePiece(initX, initY, destX, destY,board);
             if (moved)
             {
                 whitesTurn = !pieceIsWhite;

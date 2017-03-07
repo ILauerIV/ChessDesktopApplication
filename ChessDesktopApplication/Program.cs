@@ -17,22 +17,6 @@ namespace ChessDesktopApplication
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\test.txt"))
             {
               
-                Board board = new Board();
-
-                Movement move = new Movement(board);
-                file.Write(move.movePiece(0, 3, 0, 4) + System.Environment.NewLine);
-                file.Write(board.ToString());
-                file.Write(move.movePiece(0, 3, -1, 4) + System.Environment.NewLine);
-                file.Write(board.ToString());
-                file.Write(move.movePiece(0, 3, 1, 4) + System.Environment.NewLine);
-                file.Write(board.ToString());
-                file.Write(move.movePiece(0, 3, 1, 5) + System.Environment.NewLine );
-                file.Write(board.ToString());
-                
-
-
-                file.Write(move.movePiece(0, 3, 4, 4) + Environment.NewLine);
-                file.Write(board.ToString());
                 file.Close(); 
             }
             }
