@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ChessDesktopApplication.Model; 
+using ChessDesktopApplication.Model;
 
 namespace ChessDesktopApplication.Controller
 {
     /// <summary>
     /// This class controls the turn sequence along with overall play of a game 
     /// </summary>
-    class Play
+    class cmdGame
     {
         private Board board;
         private Player white;
@@ -19,7 +19,7 @@ namespace ChessDesktopApplication.Controller
        
         private bool whitesTurn; 
 
-        public Play()
+        public cmdGame()
         {
             board = new Board();
             white = new Model.Player(true);

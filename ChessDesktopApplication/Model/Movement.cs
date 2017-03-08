@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ChessDesktopApplication
+namespace ChessDesktopApplication.Model
 {
     public static class Movement
     {
