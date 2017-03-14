@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChessDesktopApplication.Model
 {
+    /// <summary>
+    /// Represents the postion of a piece on the board
+    /// </summary>
    public class  PiecePosition
     {
         public int x;
@@ -21,7 +24,11 @@ namespace ChessDesktopApplication.Model
             isWhite = Board.isWhite(piece);
         }
 
-
+        /// <summary>
+        /// Returns an unsorted list of all of the white pieces of a board
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
         public static List<PiecePosition> getAllWhite(Board board)
         {
 
@@ -38,6 +45,11 @@ namespace ChessDesktopApplication.Model
             }
             return whites; 
         }
+        /// <summary>
+        /// Returns an unsorted list of all of the black pieces of a board
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
         public static List<PiecePosition> getAllBlack(Board board)
         {
             List<PiecePosition> whites = new List<PiecePosition>();
