@@ -45,6 +45,23 @@ namespace ChessDesktopApplication.Model
             }
             return false; 
         }
+        /// <summary>
+        /// Clears the board 
+        /// </summary>
+        public void clearBoard()
+        {
+            board = new char[8, 8]
+            {
+               {' ',' ',' ',' ',' ',' ',' ',' ' },
+               {' ',' ',' ',' ',' ',' ',' ',' ' },
+               {' ',' ',' ',' ',' ',' ',' ',' ' },
+               {' ',' ',' ',' ',' ',' ',' ',' '  },
+               {' ',' ',' ',' ',' ',' ',' ',' '  },
+               {' ',' ',' ',' ',' ',' ',' ',' '  },
+               {' ',' ',' ',' ',' ',' ',' ',' ' },
+               {' ',' ',' ',' ',' ',' ',' ',' ' },
+            };
+        }
        public static bool outofBounds(int x, int y)
         {
             return !(x >= 0 && x < 8 && y >= 0 && y < 8); 

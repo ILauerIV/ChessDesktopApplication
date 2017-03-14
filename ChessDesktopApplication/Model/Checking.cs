@@ -22,12 +22,12 @@ namespace ChessDesktopApplication.Model
             PiecePosition king = null;  // this is the king we are checkign if its in check
             if (white)
             {
-                king = getKing(whites);
+                king = getKing(whites,true);
                 enemy = blacks;
             }
             else
             {
-                king = getKing(blacks);
+                king = getKing(blacks,false);
                 enemy = whites;
             }
             foreach (PiecePosition piece in enemy) /// check each piece if it has the king in check 
@@ -44,11 +44,21 @@ namespace ChessDesktopApplication.Model
         {
             return false; 
         }
-        private static PiecePosition getKing(List<PiecePosition> l)
+        private static PiecePosition getKing(List<PiecePosition> l, bool white)
         {
+            char piece = ' ';
+            if (white)
+            {
+                piece = '♔'; /// white king
+            }
+            else
+            {
+                
+                piece = '♚'; /// black king
+            }
             foreach (PiecePosition p in l)
             {
-                if (p.piece == '♚' || p.piece == '♔')
+                if (p.piece == piece)
                 {
                     return p; 
                 }

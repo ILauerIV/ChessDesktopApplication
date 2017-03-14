@@ -52,18 +52,18 @@ namespace ChessDesktopApplication.Model
         /// <returns></returns>
         public static List<PiecePosition> getAllBlack(Board board)
         {
-            List<PiecePosition> whites = new List<PiecePosition>();
+            List<PiecePosition> blacks = new List<PiecePosition>();
             for (int i = 0; i < 8; ++i)
             {
                 for (int j = 0; j < 8; ++j)
                 {
-                    if (Board.isWhite(board.getPiece(i, j)))
+                    if (Board.isBlack(board.getPiece(i, j)))
                     {
-                        whites.Add(new PiecePosition(i, j, board.getPiece(i, j)));
+                        blacks.Add(new PiecePosition(i, j, board.getPiece(i, j)));
                     }
                 }
             }
-            return whites;
+            return blacks;
         }
     }
 }
