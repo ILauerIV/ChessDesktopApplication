@@ -20,8 +20,22 @@ namespace ChessDesktopApplication.Model
       public  String move;
        public bool enpassant;
       public  bool castling;
-        public bool pawnpromote; 
-       
+        public bool pawnpromote;
+
+        public Turn(int initX, int initY, int destX, int destY)
+        {
+            this.destX = destX;
+            this.destY = destY;
+            this.initX = initX;
+            this.initY = initY;
+            this.initPiece = ' ';
+            this.destPiece = ' ' ;
+            enpassant = false;
+            castling = false;
+            pawnpromote = false;
+            move = "false";
+
+        }
         public Turn (int initX, int initY,int destX, int destY, char initPiece,char destPiece, bool en, bool cast, bool pawnp)
         {
             this.destX = destX;
