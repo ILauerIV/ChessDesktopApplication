@@ -65,7 +65,7 @@ namespace ChessDesktopApplication.Model
             }
             if (pawnpromote) ///TODO: ADD Pawn Promotion to Notaion
             {}
-            moveNot = moveNot + Board.IndexToChessNotation(destX, destY);
+           moveNot = moveNot + Notation.IndexToChessNotation(destX, destY); ///TODO: FIX THIS WITH NO BOARD
             if (castling)
             {
                 if (destY == 6)

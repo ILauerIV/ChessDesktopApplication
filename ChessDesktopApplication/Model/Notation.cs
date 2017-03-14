@@ -13,7 +13,7 @@ namespace ChessDesktopApplication.Model
         /*
         * This funciton converts the index notion of the array to algebraic chess noation. 
         */
-        public static String IndexToChessNotation(int x, int y,Board board)
+        public static String IndexToChessNotation(int x, int y)
         {
 
             if (x < 8 && x >= 0 && y < 8 && y >= 0)

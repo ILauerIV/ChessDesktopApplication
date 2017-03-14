@@ -10,7 +10,7 @@ namespace ChessDesktopApplication.Controller
     /// <summary>
     /// This class controls the turn sequence along with overall play of a game 
     /// </summary>
-    class cmdGame
+    class CMDGame :Game
     {
         private Board board;
         private Player white;
@@ -19,7 +19,7 @@ namespace ChessDesktopApplication.Controller
        
         private bool whitesTurn; 
 
-        public cmdGame()
+        public CMDGame()
         {
             board = new Board();
             white = new Model.Player(true);
@@ -36,7 +36,7 @@ namespace ChessDesktopApplication.Controller
         /// <param name="destY"></param>
         /// <param name="isWhite"></param>
         /// <returns></returns>
-        public bool turn(int initX, int initY, int destX, int destY)  ///TODO: make sure turns can be recorded with speical moves  
+        public bool move(Player player, int initX, int initY, int destX, int destY)  ///TODO: make sure turns can be recorded with speical moves  
         {
             bool moved;
             char piece = board.getPiece(initX, initY);
@@ -54,8 +54,11 @@ namespace ChessDesktopApplication.Controller
             }
             return moved; 
         }
-        
-        public bool endGame() { return false; } ///TODO: Make function to see if checkmate as occured
-        public bool check () { return false; } ///TODO: Make function to see if king is in checks 
+        public void game()
+        {
+
+        }   
+   
+      
     }
 }
