@@ -17,10 +17,10 @@ namespace ChessDesktopApplication.Model
         public int initY;
         public int destX;
         public int destY;
-        String move;
-        bool enpassant;
-        bool castling;
-        bool pawnpromote; 
+      public  String move;
+       public bool enpassant;
+      public  bool castling;
+        public bool pawnpromote; 
        
         public Turn (int initX, int initY,int destX, int destY, char initPiece,char destPiece, bool en, bool cast, bool pawnp)
         {
@@ -65,7 +65,7 @@ namespace ChessDesktopApplication.Model
             }
             if (pawnpromote) ///TODO: ADD Pawn Promotion to Notaion
             {}
-           moveNot = moveNot + Notation.IndexToChessNotation(destX, destY); ///TODO: FIX THIS WITH NO BOARD
+           moveNot = moveNot + Notation.IndexToChessNotation(destX, destY);
             if (castling)
             {
                 if (destY == 6)

@@ -365,9 +365,7 @@ namespace ChessDesktopApplication.Model
         public static bool entpassant() ///TODO: Add entpassant to movement
         {
             return false;
-        }
-        public static bool pawnPremotion() { return false; } ///TODO: Make Function for Pawn promotion
-
+        }  
         public static bool castling(int initX, int initY, int destX, int destY, Board board)
         {
             bool castle = false;
