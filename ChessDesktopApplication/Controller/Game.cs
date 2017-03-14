@@ -7,7 +7,7 @@ using ChessDesktopApplication.Model;
 
 namespace ChessDesktopApplication.Controller
 {
-    interface Game
+   public interface Game
     {
         bool move(Player player, int initX, int initY, int destX, int destY);
         void game();

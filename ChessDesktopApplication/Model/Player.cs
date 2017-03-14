@@ -9,7 +9,7 @@ namespace ChessDesktopApplication.Model
     /// <summary>
     /// The class represents a player 
     /// </summary>
-    class Player
+  public  class Player
     {
         private bool isWhite;
         private String name; 

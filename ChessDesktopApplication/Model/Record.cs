@@ -11,7 +11,7 @@ namespace ChessDesktopApplication.Model
     /// This class is a record of movements in a game 
     /// </summary>
     /// 
-    class Record
+    public class Record
     {
         List<Turn> turns;
         public Record()

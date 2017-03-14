@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessDesktopApplication.Model
 {
-    static class Notation
+    public static class Notation
     {
         public static char[] column = new char[8] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h' };
 

@@ -10,7 +10,7 @@ namespace ChessDesktopApplication.Controller
     /// <summary>
     /// This class controls the turn sequence along with overall play of a game 
     /// </summary>
-    class CMDGame :Game
+    public class CMDGame :Game
     {
         private Board board;
         private Player white;

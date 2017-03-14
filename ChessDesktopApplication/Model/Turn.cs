@@ -9,7 +9,7 @@ namespace ChessDesktopApplication.Model
     /// <summary>
     /// Represents one turn of the game. To be used in Record
     /// </summary>
-    class Turn
+    public class Turn
     {
         public char initPiece;
         public char destPiece; 

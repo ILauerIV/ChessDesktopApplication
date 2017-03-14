@@ -62,6 +62,18 @@ namespace ChessDesktopApplication.Model
                {' ',' ',' ',' ',' ',' ',' ',' ' },
             };
         }
+        /// <summary>
+        /// Sets the board to some array, Only checks 1 dimension for correctness and nothing for content
+        /// </summary>
+        /// <param name="b"></param>
+        public void setBoard(char[,] b)
+        {
+            if(b.GetLength(0) == 8)
+            {
+                board = b;
+            }
+             
+        }
        public static bool outofBounds(int x, int y)
         {
             return !(x >= 0 && x < 8 && y >= 0 && y < 8); 

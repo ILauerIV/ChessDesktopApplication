@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessDesktopApplication.Controller
 {
-    interface Input
+    public interface Input
     {
     }
 }
