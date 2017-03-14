@@ -32,7 +32,10 @@ namespace ChessDesktopApplication.Model
             }
             foreach (PiecePosition piece in enemy) /// check each piece if it has the king in check 
             {
-
+                if (Movement.moveable(piece.x, piece.y, king.x, king.y, b))
+                {
+                    return true; 
+                }
             }
 
             return false;

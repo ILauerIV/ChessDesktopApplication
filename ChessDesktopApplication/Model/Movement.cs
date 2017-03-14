@@ -12,7 +12,7 @@ namespace ChessDesktopApplication.Model
      //   Board board;
        
         /// <summary>
-        /// moves a piece on the board by taking the moving piecs coordinate
+        /// moves a piece on the board by taking the moving pieces coordinate
         /// and the coordinate of the destination space
         ///Check if the move is legal
         /// Move should not be: Out of Bounds, to the same space, onto a piece of the same color
@@ -22,7 +22,16 @@ namespace ChessDesktopApplication.Model
         /// <param name="destX"></param>
         /// <param name="destY"></param>
         /// <returns></returns>
-        public static bool movePiece(int initX, int initY, int destX, int destY, Board board)
+        public static bool movePiece(int initX, int initY, int destX, int destY, Board board) 
+        {
+            bool moved = moveable( initX,  initY,  destX, destY,  board);
+            if (moved)
+            {
+                move(initX, initY, destX, destY, board);
+            }
+            return moved;
+        }
+        public static bool moveable(int initX, int initY, int destX, int destY, Board board) ///Castling is not handed well 
         {
             if (Board.outofBounds(initX, initY))
             {
@@ -48,15 +57,15 @@ namespace ChessDesktopApplication.Model
             // Boolean isWhite = Board.whitePieces.Contains(piece);
             if (piece == ' ')
             {
-                return false; 
+                return false;
             }
-            
-            bool moved = false; 
+
+            bool moved = false;
             switch (piece)
             {
                 case '♙':
                 case '♟':
-                   moved = movePawn(initX, initY, destX, destY, board);
+                    moved = movePawn(initX, initY, destX, destY, board);
                     break;
                 case '♖':
                 case '♜':
@@ -64,7 +73,7 @@ namespace ChessDesktopApplication.Model
                     break;
                 case '♝':
                 case '♗':
-                   moved = moveBishop(initX, initY, destX, destY, board);
+                    moved = moveBishop(initX, initY, destX, destY, board);
                     break;
                 case '♛':
                 case '♕':
@@ -78,15 +87,14 @@ namespace ChessDesktopApplication.Model
                     break;
                 case '♘':
                 case '♞':
-                 moved =    moveKnight(initX, initY, destX, destY, board);
+                    moved = moveKnight(initX, initY, destX, destY, board);
                     break;
                 default:
                     return false;
-                   // break;
+                    // break;
             }
-            return moved;
+            return moved; 
         }
-
         public static bool moveKing(int initX, int initY, int destX, int destY, Board board)
         {
             bool moveable = false;
@@ -94,7 +102,6 @@ namespace ChessDesktopApplication.Model
 
             {
                 moveable = true;
-                move(initX, initY, destX, destY, board);
             }
             else
             {
@@ -114,10 +121,6 @@ namespace ChessDesktopApplication.Model
                 moveable = true;
             }
             bool blocked = blockedMove(initX, initY, destX, destY, board);
-            if (moveable && !blocked )
-            {
-                move(initX, initY, destX, destY, board);
-            }
             return moveable && !blocked;
         }
         /**
@@ -134,7 +137,6 @@ namespace ChessDesktopApplication.Model
             if ((x + y) == 3 && ((angle == 2.0) || (angle == -2.0) || (angle == .5) || (angle == -.5)))
             {
                 moveable = true;
-                move(initX, initY, destX, destY, board);
             }
             return moveable;
         }
@@ -186,10 +188,6 @@ namespace ChessDesktopApplication.Model
 
                 }
             }
-            if (moveable)
-            {
-                move(initX, initY, destX, destY, board);
-            }
             return moveable;
         }
         public static bool moveRook(int initX, int initY, int destX, int destY, Board board)
@@ -200,10 +198,6 @@ namespace ChessDesktopApplication.Model
                 moveable = true;
             }
             bool blocked = blockedMove(initX, initY, destX, destY, board);
-            if (moveable && !blocked)
-            {
-                move(initX, initY, destX, destY, board);
-            }
             return moveable && !blocked;
         }
         public static bool moveBishop(int initX, int initY, int destX, int destY, Board board)
@@ -214,10 +208,6 @@ namespace ChessDesktopApplication.Model
                 moveable = true;
             }
             bool blocked = blockedMove(initX, initY, destX, destY, board);
-            if (moveable && !blocked)
-            {
-                move(initX, initY, destX, destY, board);
-            }
             return moveable && !blocked;
         }
 
