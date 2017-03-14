@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChessDesktopApplication.Model
 {
-    static class Checking
+   public static class Checking
     {
         /// <summary>
         /// 

@@ -56,6 +56,7 @@
     <Compile Include="Model\MovementTests.cs" />
     <Compile Include="Model\BoardTests.cs" />
     <Compile Include="Model\PiecePositionTest.cs" />
+    <Compile Include="Model\CheckingTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
