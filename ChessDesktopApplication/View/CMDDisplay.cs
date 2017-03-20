@@ -7,7 +7,7 @@ using ChessDesktopApplication.Model;
 
 namespace ChessDesktopApplication.View
 {
-    class CMDDisplay
+    public class CMDDisplay
     {
         public void clearScreen()
         {
@@ -24,13 +24,18 @@ namespace ChessDesktopApplication.View
             String player = "";
             if (white)
             {
-                player = "white";
+                player = "White";
             }
             else
             {
-                player = "black";
+                player = "Black";
             }
-            Console.Write(player + " player make your move:"); 
+            Console.Write(player + " player make your move:\n"); 
+        }
+        public void moveError (string s)
+        {
+            Console.Write(s + "\n");
         }
     }
+
 }

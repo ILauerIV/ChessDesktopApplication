@@ -22,14 +22,21 @@ namespace ChessDesktopApplication.Model
         /// <param name="destX"></param>
         /// <param name="destY"></param>
         /// <returns></returns>
-        public static bool movePiece(int initX, int initY, int destX, int destY, Board board) 
+        public static Turn movePiece(int initX, int initY, int destX, int destY, Board board) 
         {
+            char initPiece;
+            char destPiece;
+            Turn returnTurn = null;
             bool moved = moveable( initX,  initY,  destX, destY,  board);
             if (moved)
             {
+                initPiece = board.getPiece(initX, initY);
+                destPiece = board.getPiece(initX, initY);
+
+                returnTurn = new Turn(initX, initY, destX, destY, initPiece, destPiece);
                 move(initX, initY, destX, destY, board);
             }
-            return moved;
+            return returnTurn;
         }
         public static bool moveable(int initX, int initY, int destX, int destY, Board board) ///Castling is not handed well 
         {
@@ -157,7 +164,7 @@ namespace ChessDesktopApplication.Model
                         moveable = true;
                     }
                 }
-                else if (Math.Abs(initX - destX) == 1 && (initY - destY) == 1 && !(board.getPiece(destX, destY) == ' '))
+                else if (Math.Abs(initX - destX) == 1 && (initY - destY) == 1 && Board.isBlack(board.getPiece(destX, destY)))
                 {
                     moveable = true;
                 }
@@ -174,12 +181,12 @@ namespace ChessDesktopApplication.Model
                     {
                         moveable = true;
                     }
-                    else if (((destX - initX == 2) && (board.getPiece(destX, destY)) == ' ' && (initX == 2)))
+                    else if (((destX - initX == 2) && (board.getPiece(destX, destY)) == ' ' && (initX == 1)))
                     {
                         moveable = true;
                     }
                 }
-                else if (Math.Abs(initX - destX) == 1 && (initY - destY) == 1 && !(board.getPiece(destX, destY) == ' '))
+                else if (( destX - initX) == 1 && Math.Abs(initY - destY) == 1 && !(board.getPiece(destX, destY) == ' '))
                 {
                     moveable = true;
                 }

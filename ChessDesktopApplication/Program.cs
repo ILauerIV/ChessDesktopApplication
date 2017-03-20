@@ -17,10 +17,8 @@ namespace ChessDesktopApplication
             static void Main(string[] args)
             {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Board b = new Board();
-            CMDDisplay dis = new CMDDisplay();
-            dis.newTurn(b, true);
-            Console.Read();   
+            CMDGame game = new CMDGame();
+            game.game();  
             }
   
         }

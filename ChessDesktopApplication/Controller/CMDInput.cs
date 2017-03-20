@@ -7,22 +7,22 @@ using ChessDesktopApplication.Model;
 
 namespace ChessDesktopApplication.Controller
 {
-    public class CMDInput
+    public  static class CMDInput
     {
-        public void turnInputAlgebraic()
+        public static  void turnInputAlgebraic()
         {
             Console.Read();
         }
         /// <summary>
         /// Returns a Turn object using XY notation, returns null on bad input 
         /// </summary>
-        public Turn cmdInputXY()
+        public static Turn cmdInputXY()
         {
             int initX = -1;
             int initY = -1;
             int destX = -1;
             int destY = -1; 
-            Console.Write("Please enter intial piece position X Y, seperated by a space");
+            Console.Write("Please enter intial piece position X Y, seperated by a space: \n");
             try
             {
                 String inital = Console.ReadLine();
@@ -35,7 +35,7 @@ namespace ChessDesktopApplication.Controller
                 Console.Write("Error, bad input!");
                 return null; 
             }
-            Console.Write("Please enter destination piece position X Y seperated by a spac");
+            Console.Write("Please enter destination piece position X Y seperated by a space:  \n");
             try
             {
                 String dest = Console.ReadLine();

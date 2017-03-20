@@ -30,7 +30,10 @@ namespace ChessDesktopApplication.Model
         {
             turns.Add(new Turn(initX, initY, destX, destY, initPiece, destPiece,en,cast,pawnp));
         }
-
+        public void recordTurn (Turn t)
+        {
+            turns.Add(t);
+        }
         
         public Turn getLastTurn()
         {
