@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using ChessDesktopApplication.Model;
+using ChessDesktopApplication.Controller;
+using ChessDesktopApplication.View;
 namespace ChessDesktopApplication
 {
   
@@ -14,12 +16,13 @@ namespace ChessDesktopApplication
         {
             static void Main(string[] args)
             {
-            using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\Users\Public\test.txt"))
-            {
-              
-                file.Close(); 
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Board b = new Board();
+            CMDDisplay dis = new CMDDisplay();
+            dis.newTurn(b, true);
+            Console.Read();   
             }
-            }
+  
         }
     }
 /// OVER ALL TD's

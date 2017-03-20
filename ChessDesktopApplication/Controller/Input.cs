@@ -8,5 +8,6 @@ namespace ChessDesktopApplication.Controller
 {
     public interface Input
     {
+        
     }
 }

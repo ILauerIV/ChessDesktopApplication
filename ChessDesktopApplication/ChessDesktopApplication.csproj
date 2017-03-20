@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\CMDInput.cs" />
     <Compile Include="Controller\Game.cs" />
     <Compile Include="Controller\Input.cs" />
     <Compile Include="Controller\PawnPromotion.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Model\Turn.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\CMDDisplay.cs" />
     <Compile Include="View\Display.cs" />
   </ItemGroup>
   <ItemGroup>

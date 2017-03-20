@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace ChessDesktopApplicationTests.Controller
 {
     [TestClass]
-    public class UnitTest1
+    public class CMDInputTest
     {
         [TestMethod]
         public void TestMethod1()
